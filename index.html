@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Click Speed Test</title>
+<style>
+#box{
+  width:200px;height:200px;
+  background:red;color:white;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+</style>
+</head>
+<body style="text-align:center;padding-top:80px">
+
+<h3>Reaction Time Test</h3>
+<p id="msg">Wait...</p>
+
+<div id="box" onclick="clicked()">WAIT</div>
+
+<script>
+let start,ready=false;
+
+setTimeout(()=>{
+  let box=document.getElementById("box");
+  box.style.background="green";
+  box.innerText="CLICK";
+  document.getElementById("msg").innerText="Click now!";
+  start=new Date().getTime();
+  ready=true;
+},Math.random()*3000+2000);
+
+function clicked(){
+  if(!ready){
+    document.getElementById("msg").innerText="Too early!";
+    return;
+  }
+  let end=new Date().getTime();
+  document.getElementById("msg").innerText=
+  "Reaction Time: "+(end-start)+" ms";
+}
+</script>
+
+</body>
+</html>
